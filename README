@@ -1,0 +1,109 @@
+Title(The Malcontent Management System)
+
+We write technical and academic documents, and are not happy with typical content management systems.
+
+Items(
+    ∙ The math has to look good.
+    ∙ We have to get the references in the right style.
+    ∙ We're posting one possibly very long document, not a daily sequence of short entries.
+    ∙ We need a PDF and web version of the document.
+    ∙ We are collaborating on one document, and some of our collaborators may not know the 
+        intricacies of LaTeX or HTML.
+)
+
+The MMS is a wrapper around LaTeX to make these things easier. Document
+parsers/translators often don't produce good output without a ton of tweaking.
+Markdown is a pain for techncial documents ("A * B * C" comes out as "A bf(B) C", for
+example). The solution here is to specify a short list of elements that 
+
+
+To compile the LaTeX and do the conversions using the script here, you will need 
+one machine with LaTeX and basic POSIX compliance.  
+
+It is easiest to set up POSIX compliance via a package management
+system. Linux users know their package manager; Mac users can use
+Link(http://macports.org~~MacPorts) or Link(http://finkproject.org~~Fink); Windows
+users can use Link(http://cygwin.com~~Cygwin).  Each of these package managers will
+set up a full TeX environment in a few clicks, not to mention thousands of other
+programs, libraries, language compilers, and games.
+
+
+
+
+Chapter(The basic idea)
+
+We use m4 to convert certain blobs of text to LaTeX-formatted blobs of HTML-formatted
+blobs, depending on the output type. Anything that is not plain text or math has an
+associated m4 command.
+
+Section(Text files)
+Revision control is built around relatively short lines of plain text, like 70 or 80
+characters. Your text editor has an auto-carriage return feature which will keep you from
+writing every paragraph as a single margin-busting line of text.
+
+Both LaTeX and HTML largely ignore the white space in your text file, so feel free to
+tab-indent whenever it's useful to you.
+
+Math is standard TeX math. We use MathJax to render it in HTML on not-too-old browsers.
+
+Section(Some commands)
+
+Subsection(Sectioning)
+There are Chapter, Section, Subsection, and Paragraph commands. If you need more depth than that
+you're probably trying too hard. Think the Paragraph is sometimes useful for marking a
+list of ideas within a section.
+
+Subsection(Text decoration et al.)
+
+Paragraph(changing typeface)
+    em(Emphasis, probably italic)
+    sc(small caps)
+    bf(boldface, use sparingly)
+    tt(teletype, for computer code-like fragments in text)
+
+Paragraph(Linking and citing)
+    Link(url~~text describing the url)
+
+Put your citations in BibTeX format in narratives.bib.
+
+
+Items(
+    ∙ bulleted lists look like this.
+    ∙ They're unicode bullets. If you don't have an easy way to type them, you could cut/paste
+        the bullets here.
+    Items(
+        ∙ Lists may be nested to arbitrary depth.
+    )
+)
+
+Chapter(References)
+For a parenthetical journal/book/reference citation: 
+    Citep(fay:herriot)   
+
+For an in-text journal/book/reference citation: 
+    Citet(fay:herriot~~Fay and Herriot). 
+The second argument is text for the HTML version; BibTeX autogenerates the right text for the PDF.
+
+\bibliographystyle{plainnat}
+\bibliography{tea}
+
+
+Chapter(Production)
+As noted above, you will need a working copy of LaTeX, and a
+basic POSIX environment to compile the document from m4 to PDF or HTML.
+
+
+Copy the tt(sample.makefile) from this project directory to your project directory and rename it tt(makefile) or tt(Makefile).
+Open the makefile in your text editor and read the notes on setting the configuration variables.
+
+When you are ready to compile the document, type
+make
+to generate the PDF, 
+make html
+to generate the HTML, and 
+make html push
+to generate the HTML and push it to Github.
+
+It relies on a lot of search-and-replace via sed, m4 for the above fixes, and a few
+other hacks. The bibliography is generated via BibTeX and then a sed script converts
+it to HTML.

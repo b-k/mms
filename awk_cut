@@ -1,0 +1,5 @@
+/<pre><code>/ {incode = 1;}
+
+ {if (incode) {sub(/<p>/,"", $0); sub(/<\/p>/,"", $0);} print $0;}
+
+/<\/code><\/pre>/ {incode = 0;}
