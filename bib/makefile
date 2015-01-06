@@ -1,11 +1,12 @@
-b=bibshell
+b=$(Bob)/bibshell
 
 bib:
+	mkdir -p $b
 	echo "\documentclass{article}	 \
 	\usepackage[utf8]{inputenc}	 \
 	\usepackage{chicago}	 \
 	\begin{filecontents}{\jobname.bib}  " > $b.tex
-	cat ../../tea.bib >> $b.tex
+	cat $(Bib_file) >> $b.tex
 	echo "\end{filecontents}" >>$b.tex
 	echo "\begin{document} \
 	\nocite{*} \

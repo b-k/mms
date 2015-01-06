@@ -1,26 +1,3 @@
-m4_divert(-1)
-m4_changecom()
-m4_changequote(`<|', `|>')
-
-m4_define(<|define_blind|>, <|_define_blind(<|$1|>, <|$2|>, <|$|><|#|>, <|$|><|0|>)|>)
-m4_define(<|_define_blind|>, <|m4_define(<|$1|>, <|m4_ifelse(<|$3|>, <|0|>, <|<|$4|>|>, <|$2|>)|>)|>)
-
-define_blind(mm, <|<|$|>$*$|>)
-define_blind(tt, <|\verb@$*@|>)
-define_blind(Tt, <|{\tt $*}|>)
-define_blind(sc, <|{\sc $*}|>)
-define_blind(bf, <|{\bf $*}|>)
-define_blind(em, <|{\em $*}|>)
-
-define_blind(Citet, <|\citet{$1}|>)
-define_blind(Citep, <|\citep<||>m4_ifelse($2,<||>,<||>,<|[$2]|>){$1}|>)
-
-define_blind(TitleDate, <|\titledate{$1}{$2}|>)
-define_blind(TeX, <|$*|>)
-define_blind(HTML, <||>)
-define_blind(Comment, <||>)
-define_blind(Digression, <|\digression{$*}|>)
-define_blind(Block, <|\begin{quote}$*\end{quote}|>)
 define_blind(Verbatim, <|\begin{verbatim}
 $*
 \end{verbatim}|>)
@@ -38,35 +15,7 @@ define_blind(Pic, <|\begin{figure}[htb]
 \end{figure}
 |>)
 
-define_blind(Section, <|\section{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>)
-define_blind(Subsection, <|\subsection{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>)
-define_blind(Paragraph, <|\paragraph{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>)
-define_blind(Link, <|\link{m4_shift($*)}{$1}|>)
 
-define_blind(PRef, <|$1 (page \pageref{m4_translit(<|$2|>, ' 	
-')})|>)
-define_blind(Ref, <|\ref{m4_translit(<|$2|>, ' 	
-')}|>)
-
-define_blind(RCode, <|\begin{lstlisting}[language=R]
-$1
-\end{lstlisting}
-|>)
-
-define_blind(SpecCode, <|\begin{lstlisting}[language=]
-$1
-\end{lstlisting}
-|>)
-
-define_blind(InSpec, <| \vskip \baselineskip \hrule\lstinputlisting{$1<||>.spec}\hrule |>)
-define_blind(InR, <| \vskip \baselineskip \hrule\vskip.1mm\hrule\lstinputlisting{$1<||>.R}\hrule\vskip.1mm\hrule |>)
-
-define_blind(Items,
-<|\begin{itemize}
-\setlength{\itemsep}{0pt}
-\setlength{\parskip}{0pt}
-\setlength{\parsep}{0pt}
-m4_patsubst(<|$@|>, <|∙|>, <|\\item |>)\end{itemize}|>)
 
 Here comes the LaTeX header. It is cut/pasted/modified from another document, where it was cut/pasted/modified from another document, ..., meaning that it has a lot that could be excised.
 
