@@ -22,7 +22,7 @@ Here comes the LaTeX header. It is cut/pasted/modified from another document, wh
 First the ending, stored in m4 buffer 9, then we return to buffer 0 to start from the beginning.
 m4_divert(9)
 \bibliographystyle{plainnat}
-\bibliography{tea}
+\bibliography{MMSBibfile}
 \end{document}
 m4_divert(0)
 
@@ -103,6 +103,6 @@ m4_divert(0)
 }{}
 
 \begin{document}
-\title{Tea for survey processing: a tutorial}
-\author{Ben Klemens, Rolando Rodr\'iguez, David Vernet}
+\title{MMSTitle}
+\author{MMSAuthor}
 \maketitle

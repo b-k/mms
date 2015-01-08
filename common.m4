@@ -20,10 +20,13 @@ Two types of teletype
 NewMMS(tt, <|\verb@$*@|>,  <|<tt>$*</tt>|>)
 NewMMS(Tt, <|{\tt $*}|>, <|<tt>$*</tt>|>)
 
-NewMMS(Section, <|\section{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
+NewMMS(Chapter, <|\section{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
+                <|m4_ifelse($2,<||>,<||>,<|<a name="$2">|>)<h1>$1</h1>m4_ifelse($2,<||>,<||>,<|</a>|>)<p>|>)
+
+NewMMS(Section, <|\subsection{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
                 <|m4_ifelse($2,<||>,<||>,<|<a name="$2">|>)<h2>$1</h2>m4_ifelse($2,<||>,<||>,<|</a>|>)<p>|>)
 
-NewMMS(Subsection, <|\subsection{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
+NewMMS(Subsection, <|\subsubsection{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
                    <|m4_ifelse($2,<||>,<||>,<|<a name="$2">|>)<h3>$1</h3>m4_ifelse($2,<||>,<||>,<|</a>|>)<p>|>)
 
 NewMMS(Paragraph, <|\paragraph{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
@@ -34,19 +37,20 @@ NewMMS(Block, <|\begin{quote}$*\end{quote}|>,
               <|<blockquote><p>$*</blockquote>|>)
 
 
-HTML version produces a <ul></li> that has to be cut down by sed to <ul>
-TeX(define_blind(Items,
+TeX(<|define_blind(Items,
             <|\begin{itemize}
             \setlength{\itemsep}{0pt}
             \setlength{\parskip}{0pt}
             \setlength{\parsep}{0pt}
             m4_patsubst(<|$@|>, <|∙|>, <|\\item |>)\end{itemize}|>
-))
-HTML(define_blind(Items,
+)|>)
+
+HTML version produces a <ul></li> that has to be cut down by sed to <ul>
+HTML(<|define_blind(Items,
         <|<ul>m4_patsubst(<|$@|>, <|∙|>, <|</li>
             <li>|>)
         </li></ul>|>
-))
+)|>)
 
 NewMMS(Citet, <|\citet{$1}|>,
               <|<a href="#$1">$2</a>|>)
@@ -69,9 +73,9 @@ NewMMS(Ref, <|\ref{m4_translit(<|$2|>, '
 ')">$1</a>|>)
 
 
-HTML(
+HTML(<|
 m4_divert(9)
 </P>
 m4_divert(0)
 <P>
-)
+|>)
