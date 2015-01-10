@@ -1,3 +1,4 @@
+HTML( <link rel="stylesheet" href="typical.css" type="text/css" >)
 We write technical and academic documents, and are not happy with typical content management systems.
 
 Items(
@@ -33,6 +34,8 @@ Items(
 ∙ a C compiler (probably gcc or clang)
 )
 
+Are you a Link(http://github.com~~Github) user? Github offers a simple means to host web
+pages, so if you have a github repository set up, the MMS has a hook to post to it.
 
 
 
@@ -48,7 +51,8 @@ tab-indent whenever it's useful to you.
 Math is standard TeX math. We use MathJax to render it in HTML on not-too-old browsers.
 
 Section(Some commands)
-You can compare the source for this manual to the PDF or HTML output to see how the
+This section is a demo of the various commands, and doesn't make much sense as prose.
+Compare the source for this manual to the PDF or HTML output to see how the
 commands work.
 
 Subsection(Sectioning)
@@ -65,7 +69,7 @@ Paragraph(changing typeface)
     tt(teletype, for computer code-like fragments in text)
 
 Paragraph(Linking)
-    Link(url~~text describing the url)
+    Link(http://example.com~~text describing the url)
 
 Paragraph(Citations)
 The MMS was developed for a distant spinoff of a modeling textbook

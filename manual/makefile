@@ -37,12 +37,14 @@ Files=manual
 # If you have a bibliography database in the project directory, a references section will
 # get added to the documents. Otherwise, leave this blank.
 Bib_file=*.bib
-Bib_styles=chicago.*
+Bib_style_files=chicago.*
+# The style for your bibliography file. plainnat (plain natural) is a fine default.
+Bib_style=plainnat
 
 # These are files that may be inputs to other files, or are linked to: CSS, JPG, PNG, GIF,
 # sample code, et cetera. They are copied  into $(Out) and $(HTMLout), so you don't
 # have to do so yourself. Any directory structure is largely destroyed.
-Extra_files=
+Extra_files=typical.css
 
 # In what directory did you put the MMS?
 MMS_dir=~/mms
@@ -56,6 +58,11 @@ Out=outputs
 # A separate HTML output directory
 HTMLout=~/tmp/
 
+# What file has LaTeX instructions that have to come before the \begin{document} (typically \usepackage commands)?
+Preamble=
+
+# What file has HTML instructions that go in the header?
+HTMLHeader=
 
 
 
@@ -68,13 +75,13 @@ HTMLout=~/tmp/
 Base:=$(shell pwd)
 
 pdf:
-	cd $(MMS_dir) && Base=$(Base) Author="$(Author)" Title="$(Title)" \
-		Out_name="$(Out_name)" Bib_file="$(Bib_file)" \
+	cd $(MMS_dir) && Base=$(Base) Author="$(Author)" Title="$(Title)" Out_name="$(Out_name)" \
+		Bib_file="$(Bib_file)" Bib_style_files="$(Bib_style_files)" Bib_style="$(Bib_style)" \
         Out=$(Out) Files="$(Files)" Extra_files="$(Extra_files)" make pdf
 
 html:
-	cd $(MMS_dir) && Base=$(Base) Author="$(Author)" Title="$(Title)" \
-		Out_name="$(Out_name)" Bib_file="$(Bib_file)" Bib_styles="$(Bib_styles)" \
-        HTMLOut=$(HTMLout) Out=$(Out) Files="$(Files)" Extra_files="$(Extra_files)" make html
+	cd $(MMS_dir) && Base=$(Base) Author="$(Author)" Title="$(Title)" Out_name="$(Out_name)"  \
+		Bib_file="$(Bib_file)" Bib_style_files="$(Bib_style_files)" Bib_style="$(Bib_style)" \
+        HTMLout=$(HTMLout) Out=$(Out) Files="$(Files)" Extra_files="$(Extra_files)" make html
 
 push:

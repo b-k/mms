@@ -73,9 +73,72 @@ NewMMS(Ref, <|\ref{m4_translit(<|$2|>, '
 ')">$1</a>|>)
 
 
-HTML(<|
 m4_divert(9)
+HTML(<|
 </P>
+</body></html>
+|>)
+TeX(<|
+m4_ifelse(<|MMSBibfile|>, <||>, <||>, <|\bibliographystyle{MMSBibstyle}
+    \bibliography{MMSBibfile}
+    |>)
+\end{document}|>)
 m4_divert(0)
-<P>
+HTML(<|
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <title>MMSTitle</title>
+
+
+<!-- LaTeX math -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true}});
+</script>
+
+m4_ifelse(<|MMSHTMLHead|>, <||>, <||>, <|m4_include(MMSHTMLHead)|>)
+
+     </head><body>
+     <h1>MMSTitle</h1>
+
+        
+        <P>|>)
+TeX(<|
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{epsfig,amsfonts,natbib,url,xspace,listings}
+
+%code listing:
+\lstset{columns=fullflexible, basicstyle=\small,
+    emph={size\_t,apop\_data,apop\_model,gsl\_vector,gsl\_matrix,gsl\_rng,FILE},emphstyle=\bfseries}
+\def\setlistdefaults{\lstset{ showstringspaces=false,%
+ basicstyle=\small, language=C, breaklines=true,caption=,label=%
+,xleftmargin=.34cm,%
+,frameshape=
+,frameshape={nnnynnnnn}{nyn}{nnn}{nnnynnnnn}
+}
+\lstset{columns=fullflexible, basicstyle=\small, emph={size_t,apop_data,apop_model,gsl_vector,gsl_matrix,gsl_rng,FILE,math_fn},emphstyle=\bfseries}
+}
+\setlistdefaults
+
+\renewcommand{\sfdefault}{phv}
+\usepackage{times, epsfig, latexsym, setspace, verbatim}
+
+\def\link#1#2{#1\footnote{\url{#2}}}
+
+%I think the Computer Modern teletype is too wide.
+\usepackage[T1]{fontenc}
+\renewcommand\ttdefault{cmtt}
+
+\def\Re{{\mathbb R}}
+
+m4_ifelse(<|MMSPreamble|>, <||>, <||>, <|m4_include(MMSPreamble)|>)
+
+\begin{document}
+\title{MMSTitle}
+\author{MMSAuthor}
+\maketitle
 |>)
