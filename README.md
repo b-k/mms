@@ -13,8 +13,6 @@ We write technical and academic documents, and are not happy with typical conten
 Setup and use
 =============
 
-Have a look at the manual for an example of how to format your documents. Your document
-will be plain text with occasional formatting elements like `Section(section head)` or
-`em(emphasized text)`.
+Have a look at the manual (in the `manual` directory) for an example of how to format your documents. Your document will be plain text with occasional formatting elements like `Section(section head)` or `em(emphasized text)`.
 
 The metadata about the project goes into a configuration/make file; copy the makefile in the manual directory to your project directory, and follow the instructions in that file to set the variables accordingly.
