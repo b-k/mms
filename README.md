@@ -13,6 +13,8 @@ We write technical and academic documents, and are not happy with typical conten
 Setup and use
 =============
 
-Have a look at the manual (in the `manual` directory) for an example of how to format your documents. Your document will be plain text with occasional formatting elements like `Section(section head)` or `em(emphasized text)`.
+Because the MMS is for document preparation, the manual  provides an example of how
+to format a document. The final HTML version is at http://b-k.github.io/mms/ , and
+the source is in the `manual` directory.
 
 The metadata about the project goes into a configuration/make file; copy the makefile in the manual directory to your project directory, and follow the instructions in that file to set the variables accordingly.

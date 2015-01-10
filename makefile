@@ -7,9 +7,9 @@ pdf:
 	cd $(Base) && cat $(Files) | sed 's/,/<|,|>/g' | sed 's/~~/,/g' | \
 		m4 -P -DMMSTitle="$(Title)" -DMMSAuthor="$(Author)" \
 			  -DMMSBibfile=`basename $(Bib_file)` -DMMSBibstyle=$(Bib_style) -DMMSPreamble=$(Preamble) \
-		      -D MMSDocType=TeXDoc $(MMS_dir)/common.m4 $(MMS_dir)/textify.m4  - | \
+		      -D MMSDocType=TeXDoc $(MMS_dir)/common.m4 - | \
 		sed -e 's/…/.../g' -e 's/&gt;/>/' -e 's/&lt;/</' > $(Base)/$(Out)/$(Out_name).tex ;
-	if [ "$(Base)/$(Extra_files)" != "$(Base)/" ] ; then \
+	-if [ "$(Base)/$(Extra_files)" != "$(Base)/" ] ; then \
 		cd $(Base) && cp $(Extra_files) $(Base)/$(Out); \
 	fi
 	cd $(Base)/$(Out) && pdflatex $(Out_name).tex;
@@ -43,9 +43,10 @@ html: insert_ps
 		touch $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html;                \
 	fi
 		cat $(Base)/$(Out)/$(Out_name).html $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html > $(HTMLout)/index.html
-	if [ "x$(Extra_files)" != "x" ] ; then \
+	-if [ "x$(Extra_files)" != "x" ] ; then \
 	    cd $(Base) && cp $(Extra_files) $(HTMLout); \
 	fi
 
 push:
-	cd $(HTMLout) && git checkout gh-pages && git commit -a -m "Another update." && git push origin gh-pages
+	cd $(HTMLout) && git checkout -B gh-pages 
+	cd $(HTMLout) && git add $(Extra_files) index.html && git commit -a -m "Another update." && git push origin gh-pages

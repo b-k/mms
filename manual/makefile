@@ -44,7 +44,7 @@ Bib_style=plainnat
 # These are files that may be inputs to other files, or are linked to: CSS, JPG, PNG, GIF,
 # sample code, et cetera. They are copied  into $(Out) and $(HTMLout), so you don't
 # have to do so yourself. Any directory structure is largely destroyed.
-Extra_files=typical.css
+Extra_files=typical.css $(Out_name).pdf
 
 # In what directory did you put the MMS?
 MMS_dir=~/mms
@@ -55,8 +55,9 @@ MMS_dir=~/mms
 # not put anything there yourself; use Extra_files below to put things here.
 Out=outputs
 
-# A separate HTML output directory
-HTMLout=~/tmp/
+# A separate HTML output directory. If you are going to use the 'make push' command
+# to push to a gh-pages branch, then this has to be a repository you have already cloned.
+HTMLout=~/tmp/mms
 
 # What file has LaTeX instructions that have to come before the \begin{document} (typically \usepackage commands)?
 Preamble=
@@ -85,3 +86,4 @@ html:
         HTMLout=$(HTMLout) Out=$(Out) Files="$(Files)" Extra_files="$(Extra_files)" make html
 
 push:
+	cd $(MMS_dir) && HTMLout=$(HTMLout) Extra_files="$(Extra_files)" make push

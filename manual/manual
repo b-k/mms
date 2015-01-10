@@ -1,4 +1,8 @@
-HTML( <link rel="stylesheet" href="typical.css" type="text/css" >)
+HTML( <link rel="stylesheet" href="typical.css" type="text/css" >
+        
+    If you prefer, read this manual as a Link(http://b-k.github.io/mms/MMS_manual.pdf~~PDF).
+)
+
 We write technical and academic documents, and are not happy with typical content management systems.
 
 Items(
