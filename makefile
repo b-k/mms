@@ -48,4 +48,4 @@ html: insert_ps
 	fi
 
 push:
-	cd $(HTMLout) && git commit -a -m "Another update." && git push origin gh-pages
+	cd $(HTMLout) && git checkout gh-pages && git commit -a -m "Another update." && git push origin gh-pages
