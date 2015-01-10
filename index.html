@@ -1,0 +1,152 @@
+</p>
+
+<p><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <title>The Malcontent Management System</title></p>
+
+<p><!-- LaTeX math -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true}});
+</script></p>
+
+<p>     </head><body>
+     <h1>The Malcontent Management System</h1></p>
+
+<p>        
+        <P></p>
+
+<p><link rel="stylesheet" href="typical.css" type="text/css" >
+We write technical and academic documents, and are not happy with typical content management systems.</p>
+
+<p><ul>
+            <li> The math has to look good.
+    </li>
+            <li> We have to get the references in the right style.
+    </li>
+            <li> We're posting one possibly very long document, not a daily sequence of short entries.
+    </li>
+            <li> We need a PDF and web version of the document.
+    </li>
+            <li> We are collaborating on one document, and some of our collaborators may not know the 
+        intricacies of LaTeX or HTML.</p>
+
+<p>        </li></ul></p>
+
+<p>The MMS is a wrapper around LaTeX to make these things easier. Document
+parsers/translators often don't produce good output without a ton of tweaking.
+Markdown is a pain for techncial documents ("A * B * C" comes out as "A <b>B</b> C", for
+example). The solution here is to specify a short list of elements to mark section
+heads, citations, and so on, and expand those to the appropriate TeX or HTML as needed.</p>
+
+<h6>Requisites</h6><p>
+To compile the LaTeX and do the conversions using the script here, you will need 
+one machine with LaTeX and basic POSIX compliance.  </p>
+
+<p>It is easiest to set up POSIX compliance via a package management
+system. Linux users know their package manager; Mac users can use
+<a href="http://macports.org">MacPorts</a> or <a href="http://finkproject.org">Fink</a>; Windows
+users can use <a href="http://cygwin.com">Cygwin</a>.  Each of these package managers will
+set up a full TeX environment in a few clicks, not to mention thousands of other
+programs, libraries, language compilers, and games. You will need:</p>
+
+<p><ul>
+            <li> make
+</li>
+            <li> a LaTeX installation
+</li>
+            <li> m4
+</li>
+            <li> a C compiler (probably gcc or clang)</p>
+
+<p>        </li></ul></p>
+
+<p>Are you a <a href="http://github.com">Github</a> user? Github offers a simple means to host web
+pages, so if you have a github repository set up, the MMS has a hook to post to it.</p>
+
+<p><h1>The basic idea</h1><p></p>
+
+<p>We use m4 to convert certain blobs of text to LaTeX-formatted blobs of HTML-formatted
+blobs, depending on the output type. Anything that is not plain text or math has an
+associated m4 command.</p>
+
+<p>Both LaTeX and HTML largely ignore the white space in your text file, so feel free to
+tab-indent whenever it's useful to you.</p>
+
+<p>Math is standard TeX math. We use MathJax to render it in HTML on not-too-old browsers.</p>
+
+<p>Both the LaTeX and HTML headers specify an encoding of UTF-8. On anything
+but Windows, this is the default; on Windows, please follow the custom of
+<a href="http://w3techs.com/technologies/overview/character_encoding/all">over 80% of
+the web</a> and save as UTF-8.</p>
+
+<p><h2>Some commands</h2><p>
+This section is a demo of the various commands, and doesn't make much sense as prose.
+Compare the source for this manual to the PDF or HTML output to see how the
+commands work.</p>
+
+<p><h3>Sectioning</h3><p>
+There are Chapter, Section, Subsection, and Paragraph commands. If you need more depth than that
+you're probably trying too hard. The Paragraph is sometimes useful for marking a
+list of ideas within a section.</p>
+
+<p><h3>Text decoration et al.</h3><p></p>
+
+<h6>changing typeface</h6><p>
+    <em>Emphasis, probably italic</em>
+    <sc>small caps</sc>
+    <b>boldface, use sparingly</b>
+    <tt>teletype, for computer code-like fragments in text</tt></p>
+
+<h6>Linking</h6><p>
+    <a href="http://example.com">text describing the url</a></p>
+
+<h6>Citations</h6><p>
+The MMS was developed for a distant spinoff of a modeling textbook
+(<a href="#klemens:modeling">klemens:modeling</a>). It was also used for documenting <a href="#klemens:tea">A survey
+processing system</a>.</p>
+
+<p>The second argument to Citep is text for the HTML version; BibTeX autogenerates the right text for the PDF.</p>
+
+<p>The content of the citations goes into a BibTeX database. See the example, or ask your
+search engine for hundreds of tutorials.</p>
+
+<h6>Lists</h6><p></p>
+
+<p><ul>
+            <li> bulleted lists look like this.
+    </li>
+            <li> They're unicode bullets. If you don't have an easy way to type them, you could cut/paste
+        the bullets here.
+    <ul>
+            <li> Lists may be nested to arbitrary depth.
+    
+        </li></ul></p>
+
+<p>        </li></ul></p>
+
+<p><h1>Production</h1><p>
+As noted above, you will need a working copy of LaTeX, and a
+basic POSIX environment to compile the document from m4 to PDF or HTML.</p>
+
+<p>Copy the <tt>makefile</tt> from this project directory (i.e., the <tt>manual</tt> subdirectory of the MMS) to your project directory. It has to be named <tt>makefile</tt> or <tt>Makefile</tt>.
+Open the makefile in your text editor and read the notes on setting the configuration variables.</p>
+
+<p>When you are ready to compile the document, type
+<tt>make</tt>
+to generate the PDF, 
+<tt>make html</tt>
+to generate the HTML, and 
+<tt>make html push</tt>
+to generate the HTML and push it to Github.</p>
+
+<p>It relies on a lot of search-and-replace via sed, m4 for the above fixes, and a few
+other hacks. The bibliography is generated via BibTeX and then a sed script converts
+it to HTML.</p>
+
+<p></P>
+</body></html>
+<h2>Bibliography</h2>
+</p><p> [<a name="klemens:modeling">klemens:modeling</a>] Ben Klemens.  with Data: Tools and Techniques for Statistical  Computing. Princeton University Press, 2008.</p><p> [<a name="klemens:tea">klemens:tea</a>] Ben Klemens. Tea for survey processing. In  of the Conference of European Statisticians  <a href="#UNECE12">UNECE12</a>.</p><p> [<a name="UNECE12">UNECE12</a>]  of the Conference of European Statisticians, Work Session on  Statistical Data Editing, September 2012. United Nations Economic Commission  for Europe.
