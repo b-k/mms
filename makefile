@@ -43,7 +43,7 @@ html: insert_ps
 		touch $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html;                \
 	fi
 		cat $(Base)/$(Out)/$(Out_name).html $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html > $(HTMLout)/index.html
-	if [ "$(Base)/$(Extra_files)" != "$(Base)/" ] ; then \
+	if [ "x$(Extra_files)" != "x" ] ; then \
 	    cd $(Base) && cp $(Extra_files) $(HTMLout); \
 	fi
 

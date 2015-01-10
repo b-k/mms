@@ -50,6 +50,11 @@ tab-indent whenever it's useful to you.
 
 Math is standard TeX math. We use MathJax to render it in HTML on not-too-old browsers.
 
+Both the LaTeX and HTML headers specify an encoding of UTF-8. On anything
+but Windows, this is the default; on Windows, please follow the custom of
+Link(http://w3techs.com/technologies/overview/character_encoding/all~~over 80\% of
+the web) and save as UTF-8.
+
 Section(Some commands)
 This section is a demo of the various commands, and doesn't make much sense as prose.
 Compare the source for this manual to the PDF or HTML output to see how the
