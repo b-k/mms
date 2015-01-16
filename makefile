@@ -25,6 +25,7 @@ insert_ps:
 
 html: insert_ps
 	mkdir -p $(Base)/$(Out)
+	mkdir -p $(HTMLout)
 	cd $(Base) && cat $(Files) | sed 's/,/<|,|>/g' | sed 's/~~/,/g' | \
 		m4 -P -DMMSTitle="$(Title)" -DMMSAuthor="$(Author)"  -DMMSHTMLHead=$(HTMLHeader) \
 			  -DMMSBibfile=`basename $(Bib_file)` -DMMSBibstyle=$(Bib_style) \
@@ -42,8 +43,8 @@ html: insert_ps
 	else                                                                               \
 		touch $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html;                \
 	fi
-		cat $(Base)/$(Out)/$(Out_name).html $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html > $(HTMLout)/index.html
-	-if [ "x$(Extra_files)" != "x" ] ; then \
+	cat $(Base)/$(Out)/$(Out_name).html $(Base)/$(Out)/bib/xxx  $(Base)/$(Out)/bib/bibshell.html > $(HTMLout)/index.html
+	if [ "x$(Extra_files)" != "x" ] ; then \
 	    cd $(Base) && cp $(Extra_files) $(HTMLout); \
 	fi
 

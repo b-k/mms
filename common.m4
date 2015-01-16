@@ -36,6 +36,17 @@ NewMMS(Paragraph, <|\paragraph{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
 NewMMS(Block, <|\begin{quote}$*\end{quote}|>,
               <|<blockquote><p>$*</blockquote>|>)
 
+Figures take (filename, scaling, caption). The label associated is the filename with everything after
+the dot replaced with pic. E.g., pants.jpg ==> pantspic.
+NewMMS(Pic, <|\begin{figure}[htb]
+            \begin{center}
+            \scalebox{90}{$1}
+             \caption{$3}
+             \label{m4_patsubst($1, <|\..*|>, <|pic|>)}
+           \end{center}
+           \end{figure}
+            |>,
+    <|<a href="#<||>m4_patsubst($1, <|\..*|>, <|pic|>)"><img src="$1" alt="$3" width="90%"></a>|>)
 
 TeX(<|define_blind(Items,
             <|\begin{itemize}
