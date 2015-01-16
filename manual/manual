@@ -65,8 +65,8 @@ Compare the source for this manual to the PDF or HTML output to see how the
 commands work.
 
 Subsection(Sectioning)
-There are Chapter, Section, Subsection, and Paragraph commands. If you need more depth than that
-you're probably trying too hard. The Paragraph is sometimes useful for marking a
+There are Chapter, Section, Subsection, and Paragraph commands.Footnote(If you need more depth than that
+you're probably trying too hard.) The Paragraph is sometimes useful for marking a
 list of ideas within a section.
 
 Subsection(Text decoration et al.)

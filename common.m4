@@ -36,17 +36,31 @@ NewMMS(Paragraph, <|\paragraph{$1}<||>m4_ifelse($2,<||>,<||>,<|\label{$2}|>)|>,
 NewMMS(Block, <|\begin{quote}$*\end{quote}|>,
               <|<blockquote><p>$*</blockquote>|>)
 
-Figures take (filename, scaling, caption). The label associated is the filename with everything after
-the dot replaced with pic. E.g., pants.jpg ==> pantspic.
+Figures take (filename, caption, HTML scaling, TeX scaling). The label associated is the
+filename with everything after the dot replaced with "pic". E.g., pants.jpg ==> pantspic.
+The HTML scaling is a percentage, like 90; the TeX is a fraction, like .9. Both are
+optional; 100%|1.0 is assumed.
+
 NewMMS(Pic, <|\begin{figure}[htb]
             \begin{center}
-            \scalebox{90}{$1}
-             \caption{$3}
+            \scalebox{m4_ifelse(<|$4|>, <||>, 1, <|$4|>)}{\includegraphics{$1}}
+             \caption{$2}
              \label{m4_patsubst($1, <|\..*|>, <|pic|>)}
            \end{center}
            \end{figure}
             |>,
-    <|<a href="#<||>m4_patsubst($1, <|\..*|>, <|pic|>)"><img src="$1" alt="$3" width="90%"></a>|>)
+    <|<a name="m4_patsubst($1, <|\..*|>, <|pic|>)"><img src="$1" alt="$2" width="m4_ifelse(<|$3|>, <||>, 100, <|$3|>)%"></a>|>)
+
+
+m4_define(<|MMSFnCtr|>, 1)
+
+NewMMS(Footnote,<|\footnote{$1}m4_incr(<|MMSFnCtr|>)|>,
+<|
+<a name="fnsrc_<||>MMSFnCtr"><a href="#note_<||>MMSFnCtr"><sup>MMSFnCtr</sup></a></a>
+m4_divert(6)
+<a name="note_<||>MMSFnCtr"><a href="#fnsrc_<||>MMSFnCtr">MMSFnCtr</a></a>. $1<br>
+m4_divert(0)m4_incr(<|MMSFnCtr|>)|>)
+
 
 TeX(<|define_blind(Items,
             <|\begin{itemize}
@@ -74,13 +88,11 @@ NewMMS(Link, <|\link{m4_shift($*)}{$1}|>,
                    <|<a href="$1">m4_shift($*)</a>|>)
 
 NewMMS(PRef, <|$1 (page \pageref{m4_translit(<|$2|>, '
-')})|>
-           , <|<a href="#<||>m4_translit(<|$2|>, '
+')})|>, <|<a href="#<||>m4_translit(<|$2|>, '
 ')">$1</a>|>)
 
 NewMMS(Ref, <|\ref{m4_translit(<|$2|>, '
-')}|>
-        , <|<a href="#<||>m4_translit(<|$2|>, '
+')}|>, <|<a href="#<||>m4_translit(<|$2|>, '
 ')">$1</a>|>)
 
 
@@ -120,7 +132,7 @@ TeX(<|
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\usepackage{epsfig,amsfonts,natbib,url,xspace,listings}
+\usepackage{epsfig,amsfonts,natbib,url,xspace,listings, graphicx}
 
 %code listing:
 \lstset{columns=fullflexible, basicstyle=\small,
