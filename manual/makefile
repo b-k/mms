@@ -83,7 +83,7 @@ pdf:
 html:
 	cd $(MMS_dir) && Base=$(Base) Author="$(Author)" Title="$(Title)" Out_name="$(Out_name)"  \
 		Bib_file="$(Bib_file)" Bib_style_files="$(Bib_style_files)" Bib_style="$(Bib_style)" \
-        HTMLout=$(HTMLout) Out=$(Out) Files="$(Files)" Extra_files="$(Extra_files)" make html
+        HTMLHeader=$(HTMLHeader) HTMLout=$(HTMLout) Out=$(Out) Files="$(Files)" Extra_files="$(Extra_files)" make html
 
 push:
 	cd $(MMS_dir) && HTMLout=$(HTMLout) Extra_files="$(Extra_files)" make push
