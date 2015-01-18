@@ -74,7 +74,8 @@ Paragraph(changing typeface)
     tt(teletype, for computer code-like fragments in text)
 
 Paragraph(Linking)
-    Link(http://example.com~~text describing the url)
+    Here are links to Link(http://b-k.github.io/tea-tutorial/~~one extant use of the MMS) and Link(https://github.com/b-k/tea-tutorial/blob/master/tea_tutorial~~its source),
+    and Link(http://b-k.github.io/narrratives-distributions/~~another use of the MMS) and Link(https://github.com/b-k/narrratives-distributions~~its source).
 
 Paragraph(Citations)
 The MMS was developed for a distant spinoff of a modeling textbook
@@ -83,7 +84,7 @@ processing system).
 
 The second argument to Citep is text for the HTML version; BibTeX autogenerates the right text for the PDF.
 
-The content of the citations goes into a BibTeX database. See the example, or ask your
+The content of the citations goes into a BibTeX database. See the sample bib file, or ask your
 search engine for hundreds of tutorials.
 
 Paragraph(Lists)
