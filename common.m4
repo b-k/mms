@@ -54,12 +54,13 @@ NewMMS(Pic, <|\begin{figure}[htb]
 
 m4_define(<|MMSFnCtr|>, 1)
 
-NewMMS(Footnote,<|\footnote{$1}m4_incr(<|MMSFnCtr|>)|>,
-<|
-<a name="fnsrc_<||>MMSFnCtr"><a href="#note_<||>MMSFnCtr"><sup>MMSFnCtr</sup></a></a>
+NewMMS(Footnote,<|\footnote{$1}|>,
+<|<a name="fnsrc_<||>MMSFnCtr"><a href="#note_<||>MMSFnCtr"><sup>MMSFnCtr</sup></a></a>
 m4_divert(6)
+m4_ifelse(MMSFnCtr, 1, <hr width="15%" align="left">)
+
 <a name="note_<||>MMSFnCtr"><a href="#fnsrc_<||>MMSFnCtr">MMSFnCtr</a></a>. $1<br>
-m4_divert(0)m4_incr(<|MMSFnCtr|>)|>)
+m4_divert(0)m4_define(<|MMSFnCtr|>, m4_incr(MMSFnCtr))|>)
 
 
 TeX(<|define_blind(Items,

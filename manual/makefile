@@ -44,7 +44,7 @@ Bib_style=plainnat
 # These are files that may be inputs to other files, or are linked to: CSS, JPG, PNG, GIF,
 # sample code, et cetera. They are copied  into $(Out) and $(HTMLout), so you don't
 # have to do so yourself. Any directory structure is largely destroyed.
-Extra_files=typical.css $(Out_name).pdf
+Extra_files=typical.css *.png
 
 # In what directory did you put the MMS?
 MMS_dir=~/mms
@@ -63,7 +63,7 @@ HTMLout=~/tmp/mms
 Preamble=
 
 # What file has HTML instructions that go in the header?
-HTMLHeader=
+HTMLHeader=head.html
 
 
 
