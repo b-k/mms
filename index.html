@@ -12,14 +12,15 @@
       processEscapes: true}});
 </script></p>
 
+<p><link rel="stylesheet" href="typical.css" type="text/css" ></p>
+
 <p>     </head><body>
      <h1>The Malcontent Management System</h1></p>
 
 <p>        
         <P></p>
 
-<p><link rel="stylesheet" href="typical.css" type="text/css" >
-We write technical and academic documents, and are not happy with typical content management systems.</p>
+<p>We write technical and academic documents, and are not happy with typical content management systems.</p>
 
 <p><ul>
             <li> The math has to look good.
@@ -35,11 +36,12 @@ We write technical and academic documents, and are not happy with typical conten
 
 <p>        </li></ul></p>
 
-<p>The MMS is a wrapper around LaTeX to make these things easier. Document
-parsers/translators often don't produce good output without a ton of tweaking.
-Markdown is a pain for techncial documents ("A * B * C" comes out as "A <b>B</b> C", for
-example). The solution here is to specify a short list of elements to mark section
-heads, citations, and so on, and expand those to the appropriate TeX or HTML as needed.</p>
+<p><a href="https://github.com/b-k/mms">The MMS</a> is a wrapper around LaTeX to make these
+things easier. Document parsers/translators often don't produce good output without a
+ton of tweaking.  Markdown is a pain for techncial documents ("A * B * C" comes out as
+"A <b>B</b> C", for example). The solution here is to specify a short list of elements
+to mark section heads, citations, and so on, and expand those to the appropriate TeX
+or HTML as needed.</p>
 
 <h6>Requisites</h6><p>
 To compile the LaTeX and do the conversions using the script here, you will need 
@@ -84,13 +86,14 @@ the web</a> and save as UTF-8.</p>
 
 <p><h2>Some commands</h2><p>
 This section is a demo of the various commands, and doesn't make much sense as prose.
-Compare the source for this manual to the PDF or HTML output to see how the
+But you can compare the source for this manual to the PDF or HTML output to see how the
 commands work.</p>
 
 <p><h3>Sectioning</h3><p>
-There are Chapter, Section, Subsection, and Paragraph commands. If you need more depth than that
-you're probably trying too hard. The Paragraph is sometimes useful for marking a
-list of ideas within a section.</p>
+There are Chapter, Section, Subsection, and Paragraph commands. If you need more
+depth than that you're probably trying too hard. The Paragraph is sometimes useful
+for marking a list of ideas within a section.
+<a name="fnsrc_1"><a href="#note_1"><sup>1</sup></a></a></p>
 
 <p><h3>Text decoration et al.</h3><p></p>
 
@@ -128,11 +131,12 @@ search engine for hundreds of tutorials.</p>
 
 <p>        </li></ul></p>
 
-<h6>Pictures</h6><p></p>
+<h6>Images</h6><p></p>
 
-<p> <a href="#markdown_cheatspic">This figure</a> shows some of the many Markdown cheat sheets available.</p>
+<p><a href="#markdown_cheatspic">This figure</a> shows some of the many Markdown cheat sheets you
+won't be using.</p>
 
-<p><a name="markdown_cheatspic"><img src="markdown_cheats.png" alt="Some Markdown cheat sheets you won't be needing" width=".8%"></a></p>
+<p><a name="markdown_cheatspic"><img src="markdown_cheats.png" alt="A panoply of Markdown cheat sheets" width=".9%"></a></p>
 
 <p><h1>Production</h1><p>
 As noted above, you will need a working copy of LaTeX, and a
@@ -152,6 +156,10 @@ to generate the HTML and push it to Github.</p>
 <p>It relies on a lot of search-and-replace via sed, m4 for the above fixes, and a few
 other hacks. The bibliography is generated via BibTeX and then a sed script converts
 it to HTML.</p>
+
+<p><a name="note_1"><a href="#fnsrc_1">1</a></a>. Footnotes are also available,
+although, outside of law reviews, editors typically discourage them. Click the footnote
+number to get back to where you were in the text.<br></p>
 
 <p></P>
 </body></html>
