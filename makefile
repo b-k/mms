@@ -4,7 +4,7 @@ MMS_dir:=$(shell pwd)
 
 pdf:
 	mkdir -p $(Base)/$(Out)
-	cd $(Base) && cat $(Files) | sed 's/,/<|,|>/g' | sed 's/~~/,/g' | \
+	cd $(Base) && cat $(Files) | sed 's/,/<|,|>/g' | sed -e 's/~~/,/g' -e 's/%/\\%/g' | \
 		m4 -P -DMMSTitle="$(Title)" -DMMSAuthor="$(Author)" \
 			  -DMMSBibfile=`basename $(Bib_file)` -DMMSBibstyle=$(Bib_style) -DMMSPreamble=$(Preamble) \
 		      -D MMSDocType=TeXDoc $(MMS_dir)/common.m4 - | \
