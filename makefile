@@ -6,7 +6,7 @@ pdf:
 	mkdir -p $(Base)/$(Out)
 	cd $(Base) && cat $(Files) | sed 's/,/<|,|>/g' | sed -e 's/~~/,/g' -e 's/%/\\%/g' | \
 		m4 -P -DMMSTitle="$(Title)" -DMMSAuthor="$(Author)" \
-			  -DMMSBibfile=`basename $(Bib_file)` -DMMSBibstyle=$(Bib_style) -DMMSPreamble=$(Preamble) \
+			  -DMMSBibfile=`basename $(Bib_file) .bib` -DMMSBibstyle=$(Bib_style) -DMMSPreamble=$(Preamble) \
 		      -D MMSDocType=TeXDoc $(MMS_dir)/common.m4 - | \
 		sed -e 's/…/.../g' -e 's/&gt;/>/' -e 's/&lt;/</' > $(Base)/$(Out)/$(Out_name).tex ;
 	-if [ "$(Base)/$(Extra_files)" != "$(Base)/" ] ; then \
@@ -28,7 +28,7 @@ html: insert_ps
 	mkdir -p $(HTMLout)
 	cd $(Base) && cat $(Files) | sed 's/,/<|,|>/g' | sed 's/~~/,/g' | \
 		m4 -P -DMMSTitle="$(Title)" -DMMSAuthor="$(Author)"  -DMMSHTMLHead=$(HTMLHeader) \
-			  -DMMSBibfile=`basename $(Bib_file)` -DMMSBibstyle=$(Bib_style) \
+			  -DMMSBibfile=`basename $(Bib_file) .bib` -DMMSBibstyle=$(Bib_style) \
   	$(MMS_dir)/common.m4 - | sed -e 's|<ul> *</li>|<ul>|' | $(MMS_dir)/insert_ps | \
         sed -e 's/<p><h6>/<h6>/' -e 's|</h6></p>|</h6>|' -e 's|<p></li>|</li>|g'\
         -e '$d' -e 's/``/“/g' -e 's/\\dots/…/g' -e 's/\\%/%/g' -e 's/\\#/#/g' -e 's/---/—/g'\
